@@ -1,241 +1,181 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="Plataforma premium de tecnologia para o agronegócio: dashboard inteligente, agricultura de precisão, marketplace ESG e insights com IA. Modernize sua gestão rural.">
-    <meta name="keywords" content="agronegócio, agricultura de precisão, ESG, drones, gestão rural, marketplace rural, inteligência artificial, agro tecnologia">
-    <meta name="author" content="Agronegócio Premium">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.agronegociopremium.com">
-    <meta property="og:title" content="Agronegócio Premium - Tecnologia que colhe resultados">
-    <meta property="og:description" content="Soluções integradas de IA, ESG, marketplace e monitoramento para o produtor moderno.">
-    <meta property="og:image" content="https://www.agronegociopremium.com/assets/images/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Agronegócio Premium - Inovação no campo">
-    <meta name="twitter:description" content="Tecnologia de ponta para gestão rural sustentável.">
-    
-    <!-- Schema Markup (Organization) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Agronegócio Premium",
-      "url": "https://www.agronegociopremium.com",
-      "logo": "https://www.agronegociopremium.com/assets/images/logo.png",
-      "sameAs": ["https://www.instagram.com/agropremium","https://www.linkedin.com/company/agropremium"],
-      "description": "Plataforma B2B de soluções tecnológicas para o agronegócio sustentável e inteligente."
-    }
-    </script>
-    
-    <title>Agronegócio Premium | Tecnologia, ESG e IA para o agro</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!-- Preconnect e Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Bibliotecas externas -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrotherCore TV - Sua Plataforma de Skate</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- DARK MODE TOGGLE BUTTON (flutuante) -->
-    <div class="darkmode-toggle" id="darkModeToggle" aria-label="Alternar dark mode">
-        <i class="fas fa-moon"></i>
-    </div>
-
-    <!-- HEADER / NAVBAR PREMIUM -->
-    <header class="header" id="header">
-        <nav class="navbar container">
+    <!-- Header estilo YouTube -->
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-btn">☰</button>
             <div class="logo">
-                <i class="fas fa-leaf"></i>
-                <span>Agro<span class="highlight">Premium</span></span>
+                <span class="logo-icon">🛹</span>
+                <span class="logo-text">BrotherCore<span class="logo-tv">TV</span></span>
             </div>
-            <div class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li><a href="#hero" class="nav-link">Início</a></li>
-                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="#solucoes" class="nav-link">Soluções</a></li>
-                    <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
-                    <li><a href="#marketplace" class="nav-link">Marketplace</a></li>
-                    <li><a href="#blog" class="nav-link">Blog</a></li>
-                    <li><a href="#contato" class="nav-link">Contato</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <a href="#" class="btn-outline">Área do Produtor</a>
-                    <a href="#" class="btn-primary">Demo Grátis</a>
-                </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar vídeos de skate...">
+                <button class="search-btn">🔍</button>
             </div>
-            <div class="mobile-menu-icon" id="mobileMenuIcon">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+            <button class="mic-btn">🎤</button>
+        </div>
+        
+        <div class="header-right">
+            <button class="upload-btn">
+                <span>📹</span>
+                <span class="upload-text">Upload</span>
+            </button>
+            <button class="notification-btn">🔔<span class="notification-badge">3</span></button>
+            <div class="user-avatar">S</div>
+        </div>
     </header>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero" id="hero">
-            <div class="hero-overlay"></div>
-            <div class="hero-content container" data-aos="fade-up" data-aos-duration="1000">
-                <h1>Tecnologia que transforma o <span class="gradient-text">campo</span> em dados</h1>
-                <p>Agricultura de precisão, gestão ESG, inteligência artificial e marketplace. Acelere sua produtividade com quem entende do futuro do agro.</p>
-                <div class="hero-buttons">
-                    <a href="#solucoes" class="btn-primary btn-large">Explorar Soluções <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contato" class="btn-outline-light">Fale com especialista</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat"><span data-count="12500">0</span><span>+</span><p>Hectares monitorados</p></div>
-                    <div class="stat"><span data-count="98">0</span><span>%</span><p>Redução de custos</p></div>
-                    <div class="stat"><span data-count="45">0</span><span>+</span><p>Parceiros estratégicos</p></div>
-                </div>
-            </div>
-        </section>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <a href="#" class="sidebar-item active">🏠 Início</a>
+        <a href="#" class="sidebar-item">🔥 Em Alta</a>
+        <a href="#" class="sidebar-item">📺 Inscrições</a>
+        <a href="#" class="sidebar-item">📚 Biblioteca</a>
+        <a href="#" class="sidebar-item">🛹 Skate</a>
+        <a href="#" class="sidebar-item">🎵 Música</a>
+        <a href="#" class="sidebar-item">🎮 Games</a>
+        <a href="#" class="sidebar-item">🏆 Esportes</a>
+    </nav>
 
-        <!-- SOBRE -->
-        <section class="sobre" id="sobre">
-            <div class="container" data-aos="fade-right">
-                <div class="sobre-grid">
-                    <div class="sobre-text">
-                        <span class="badge">Quem somos</span>
-                        <h2>Conectando inovação e sustentabilidade no agronegócio</h2>
-                        <p>Somos uma plataforma premium que integra inteligência artificial, drones e gestão inteligente para transformar a produção rural. Nossa missão é oferecer dados precisos e soluções ESG que aumentem a rentabilidade e preservem o amanhã.</p>
-                        <div class="features-list">
-                            <div><i class="fas fa-chart-line"></i> +32% eficiência operacional</div>
-                            <div><i class="fas fa-tractor"></i> Tecnologia de ponta no campo</div>
-                            <div><i class="fas fa-seedling"></i> Certificação carbono neutro</div>
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="video-container">
+            <!-- Player Principal -->
+            <div class="video-player-wrapper">
+                <video id="mainVideo" class="video-player" controls>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-skateboarder-doing-a-trick-in-a-skate-park-43237-large.mp4" type="video/mp4">
+                </video>
+                
+                <!-- Overlay de controles customizados -->
+                <div class="custom-controls" id="customControls">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-filled" id="progressFilled"></div>
+                            <div class="progress-thumb" id="progressThumb"></div>
                         </div>
                     </div>
-                    <div class="sobre-image">
-                        <img src="https://images.pexels.com/photos/1659437/pexels-photo-1659437.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Agricultura tecnológica" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Info do Vídeo -->
+            <div class="video-info">
+                <h1 class="video-title">MELHORES MANOBRAS DE SKATE 2024 - BROTHER CORE SESSION</h1>
+                
+                <div class="video-actions">
+                    <div class="channel-info">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23ff00c8'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-size='20'%3EBC%3C/text%3E%3C/svg%3E" 
+                             alt="BrotherCore Channel" class="channel-avatar">
+                        <div class="channel-details">
+                            <h3 class="channel-name">BrotherCore Official</h3>
+                            <span class="subscriber-count">1.2M inscritos</span>
+                        </div>
+                        <button class="subscribe-btn" id="subscribeBtn">
+                            <span class="subscribe-text">Inscrever-se</span>
+                            <span class="subscribed-text">✓ Inscrito</span>
+                        </button>
+                    </div>
+                    
+                    <div class="engagement-buttons">
+                        <div class="like-dislike-container">
+                            <button class="like-btn" id="likeBtn">
+                                👍 <span id="likeCount">15K</span>
+                            </button>
+                            <div class="like-dislike-divider"></div>
+                            <button class="dislike-btn" id="dislikeBtn">
+                                👎
+                            </button>
+                        </div>
+                        
+                        <button class="share-btn">📤 Compartilhar</button>
+                        <button class="clip-btn">✂️ Clip</button>
+                        <button class="save-btn">💾 Salvar</button>
+                        <button class="more-btn">⋯</button>
+                    </div>
+                </div>
+                
+                <!-- Descrição -->
+                <div class="description-container" id="descriptionContainer">
+                    <div class="description-preview">
+                        <span class="views-count">258K visualizações</span>
+                        <span class="upload-date"> • 15 de jan. de 2024</span>
+                        <p class="description-text">
+                            🔥 As manobras mais insanas da sessão Brother Core!<br>
+                            🛹 Skate de rua, flip tricks, grinds e muito mais!<br>
+                            📹 Filmado por: Brother Core Crew<br>
+                            🎵 Música: Underground Hip-Hop Mix
+                        </p>
+                        <button class="show-more-btn">Mostrar mais</button>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- SOLUÇÕES -->
-        <section class="solucoes" id="solucoes">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <span class="badge">Soluções Integradas</span>
-                    <h2>EcoSistema de Tecnologia para o Agro 4.0</h2>
-                    <p>Do monitoramento por satélite ao marketplace ESG, entregamos o que há de mais moderno.</p>
-                </div>
-                <div class="solucoes-grid">
-                    <div class="solucao-card" data-aos="zoom-in"><i class="fas fa-microchip"></i><h3>Inteligência Artificial</h3><p>Previsão de safra, detecção de pragas e recomendações em tempo real.</p></div>
-                    <div class="solucao-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-drone"></i><h3>Drones & Satélites</h3><p>Mapeamento aéreo com visão multiespectral e entregas autônomas.</p></div>
-                    <div class="solucao-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-chart-simple"></i><h3>Gestão Rural</h3><p>ERP agrícola, controle financeiro, estoque e CRM integrado.</p></div>
-                    <div class="solucao-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-leaf"></i><h3>ESG na Prática</h3><p>Relatórios ambientais, pegada de carbono e créditos de biodiversidade.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DASHBOARD AGRÍCOLA (CHART.JS) -->
-        <section class="dashboard" id="dashboard">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <span class="badge">Inteligência em dados</span>
-                    <h2>Dashboard Agrícola Premium</h2>
-                    <p>Acompanhe produtividade, clima e saúde do solo em tempo real.</p>
-                </div>
-                <div class="dashboard-card" data-aos="flip-up">
-                    <canvas id="agroChart" width="400" height="200" style="max-width:100%; height:auto"></canvas>
-                    <div class="dashboard-metrics">
-                        <div><span>🌾 Soja</span><strong>68 sac/ha</strong></div>
-                        <div><span>🌽 Milho</span><strong>112 sac/ha</strong></div>
-                        <div><span>📡 Umidade solo</span><strong>22%</strong></div>
+            <!-- Seção de Comentários -->
+            <div class="comments-section">
+                <div class="comments-header">
+                    <h2 class="comments-title">
+                        <span id="totalComments">1.2K</span> Comentários
+                    </h2>
+                    <div class="comments-sort">
+                        <span>📋 Ordenar por:</span>
+                        <select class="sort-select">
+                            <option>Mais relevantes</option>
+                            <option>Mais recentes</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- AGRICULTURA INTELIGENTE + VÍDEO (placeholder) -->
-        <section class="agro-inteligente">
-            <div class="container" data-aos="fade-left">
-                <div class="agro-flex">
-                    <div class="agro-text">
-                        <h2>Agricultura de Precisão com IA Generativa</h2>
-                        <p>Nossa plataforma analisa imagens de satélite e fornece recomendações localizadas. Reduza insumos, aumente a produtividade e antecipe eventos climáticos.</p>
-                        <ul><li><i class="fas fa-check-circle"></i> Prescrição de fertilizantes variável</li><li><i class="fas fa-check-circle"></i> Alertas de geada/estiagem</li><li><i class="fas fa-check-circle"></i> Integração com maquinário autônomo</li></ul>
-                        <a href="#" class="btn-primary">Conhecer Agro IA</a>
-                    </div>
-                    <div class="agro-video">
-                        <div class="video-placeholder"><i class="fas fa-play-circle"></i> Demonstração interativa</div>
+                <!-- Caixa de comentário -->
+                <div class="comment-form">
+                    <div class="user-avatar comment-avatar">V</div>
+                    <div class="comment-input-container">
+                        <input 
+                            type="text" 
+                            class="comment-input" 
+                            id="commentInput" 
+                            placeholder="Adicione um comentário..."
+                            maxlength="500"
+                        >
+                        <div class="comment-form-actions" id="commentActions" style="display: none;">
+                            <button class="cancel-comment-btn" id="cancelComment">Cancelar</button>
+                            <button class="submit-comment-btn" id="submitComment">Comentar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- MARKETPLACE -->
-        <section class="marketplace" id="marketplace">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up"><span class="badge">Marketplace B2B</span><h2>Negocie insumos, máquinas e grãos</h2><p>Plataforma segura com rastreabilidade e contratos digitais.</p></div>
-                <div class="marketplace-grid" data-aos="fade-up">
-                    <div class="market-item"><i class="fas fa-tractor"></i><h4>Máquinas Agrícolas</h4><p>Até 30% OFF + garantia estendida</p></div>
-                    <div class="market-item"><i class="fas fa-flask"></i><h4>Bioinsumos</h4><p>Parceiros certificados ESG</p></div>
-                    <div class="market-item"><i class="fas fa-chart-line"></i><h4>Grãos & Commodities</h4><p>Melhor cotação do mercado</p></div>
+                <!-- Lista de comentários -->
+                <div class="comments-list" id="commentsList">
+                    <!-- Comentários serão inseridos aqui dinamicamente -->
                 </div>
+                
+                <button class="load-more-comments" id="loadMoreComments">
+                    Carregar mais comentários
+                </button>
             </div>
-        </section>
+        </div>
 
-        <!-- BLOG / NOTÍCIAS -->
-        <section class="blog" id="blog">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up"><span class="badge">Blog & Notícias</span><h2>Insights do Agro</h2><p>Fique por dentro das últimas tendências e inovações.</p></div>
-                <div class="swiper blog-swiper" data-aos="fade-up">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide blog-card"><img src="https://images.pexels.com/photos/1342609/pexels-photo-1342609.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div><h4>Recorde na produção de grãos</h4><p>Tecnologia e manejo impulsionam safra histórica.</p><span>13 maio 2025</span></div></div>
-                        <div class="swiper-slide blog-card"><img src="https://images.pexels.com/photos/235725/pexels-photo-235725.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div><h4>ESG: O novo padrão de exportação</h4><p>Certificações agregam valor ao agro brasileiro.</p><span>05 jun 2025</span></div></div>
-                        <div class="swiper-slide blog-card"><img src="https://images.pexels.com/photos/1747150/pexels-photo-1747150.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div><h4>Drones e IA na pulverização</h4><p>Redução de 40% de defensivos.</p><span>20 abr 2025</span></div></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
+        <!-- Sidebar de Recomendações -->
+        <aside class="recommendations-sidebar">
+            <div class="recommendations-header">
+                <h3>Próximos vídeos</h3>
+                <button class="autoplay-toggle">Reprodução automática ⏸️</button>
             </div>
-        </section>
-
-        <!-- ESG + GALERIA -->
-        <section class="esg" id="esg">
-            <div class="container">
-                <div class="esg-content" data-aos="fade-right"><span class="badge">Compromisso ESG</span><h2>Sustentabilidade e responsabilidade social</h2><p>Neutro em carbono até 2028, gestão de resíduos e programas de inclusão digital no campo.</p><a href="#" class="btn-outline-light">Relatório ESG 2025</a></div>
-                <div class="galeria-mini" data-aos="fade-left"><div class="galeria-grid"><img src="https://images.pexels.com/photos/1024545/pexels-photo-1024545.jpeg?auto=compress&cs=tinysrgb&w=200" alt=""><img src="https://images.pexels.com/photos/4553112/pexels-photo-4553112.jpeg?auto=compress&cs=tinysrgb&w=200" alt=""><img src="https://images.pexels.com/photos/1267325/pexels-photo-1267325.jpeg?auto=compress&cs=tinysrgb&w=200" alt=""></div></div>
+            
+            <div class="video-cards-container" id="recommendedVideos">
+                <!-- Cards de vídeos recomendados -->
             </div>
-        </section>
-
-        <!-- DEPOIMENTOS -->
-        <section class="depoimentos">
-            <div class="container"><div class="section-header"><h2>O que dizem os produtores</h2></div>
-                <div class="swiper depo-swiper" data-aos="fade-up"><div class="swiper-wrapper"><div class="swiper-slide depo-card"><i class="fas fa-quote-left"></i><p>“A plataforma aumentou nossa rentabilidade em 27% no primeiro ano.”</p><h5>João Mendes</h5><span>Sojicultor, MT</span></div><div class="swiper-slide depo-card"><i class="fas fa-quote-left"></i><p>“Gestão ESG integrada abriu novos mercados internacionais.”</p><h5>Ana Paula R.</h5><span>CEO AgroVerde</span></div></div><div class="swiper-pagination"></div></div>
-            </div>
-        </section>
-
-        <!-- PARCEIROS -->
-        <section class="parceiros"><div class="container"><div class="parceiros-slider" data-aos="fade-up"><i class="fab fa-microsoft"></i><i class="fab fa-google"></i><i class="fas fa-seedling"></i><i class="fas fa-chart-line"></i><span>John Deere</span><span>Bayer</span></div></div></section>
-
-        <!-- FAQ ACCORDION -->
-        <section class="faq"><div class="container"><div class="section-header"><h2>Perguntas Frequentes</h2></div><div class="faq-list" data-aos="fade-up"><div class="faq-item"><div class="faq-question">Como funciona a integração com maquinário?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Conectamos via API aberta com principais fabricantes: John Deere, CNH, AGCO. Dados em tempo real.</div></div><div class="faq-item"><div class="faq-question">O marketplace possui garantia?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Sim, todas as transações são protegidas e com avaliação de fornecedores.</div></div><div class="faq-item"><div class="faq-question">Qual o investimento inicial?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Planos a partir de R$ 399/mês com primeira semana grátis. Consulte condições.</div></div></div></div></section>
-
-        <!-- NEWSLETTER -->
-        <section class="newsletter"><div class="container newsletter-box"><h3>Insights exclusivos no seu e-mail</h3><p>Receba novidades, cases e tendências do agro 4.0</p><form id="newsletterForm"><input type="email" placeholder="Seu melhor e-mail" id="newsEmail" required><button type="submit" class="btn-primary">Assinar <i class="fas fa-paper-plane"></i></button></form><div id="newsMsg"></div></div></section>
-
-        <!-- CONTATO -->
-        <section class="contato" id="contato"><div class="container contato-grid"><div data-aos="fade-right"><h2>Fale com um especialista</h2><p>Pronto para transformar sua produção?</p><ul><li><i class="fas fa-phone-alt"></i> +55 (11) 4000-1234</li><li><i class="fas fa-envelope"></i> contato@agropremium.com</li></ul></div><div data-aos="fade-left"><form id="contactForm"><input type="text" placeholder="Nome" required><input type="email" placeholder="Email" required><textarea rows="4" placeholder="Mensagem"></textarea><button class="btn-primary">Enviar mensagem</button></form><p id="formFeedback"></p></div></div></section>
+        </aside>
     </main>
 
-    <footer class="footer"><div class="container footer-grid"><div><div class="logo"><i class="fas fa-leaf"></i> AgroPremium</div><p>Tecnologia que nutre o futuro.</p><div class="social"><i class="fab fa-instagram"></i><i class="fab fa-linkedin"></i><i class="fab fa-youtube"></i></div></div><div><h4>Links</h4><ul><li><a href="#solucoes">Soluções</a></li><li><a href="#blog">Blog</a></li><li><a href="#contato">Contato</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="#">Privacidade</a></li><li><a href="#">Termos de uso</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Agronegócio Premium - Inovação e sustentabilidade.</p></div></footer>
-
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

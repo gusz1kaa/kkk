@@ -1,173 +1,301 @@
-// script.js
-// Aguarda carregamento do DOM
-document.addEventListener('DOMContentLoaded', function() {
-    // ========== MENU MOBILE ==========
-    const mobileIcon = document.getElementById('mobileMenuIcon');
-    const navMenu = document.getElementById('navMenu');
-    if(mobileIcon && navMenu) {
-        mobileIcon.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileIcon.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileIcon.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-    }
+// ============================================
+// BROTHER CORE TV - SISTEMA COMPLETO ESTILO YOUTUBE
+// ============================================
 
-    // ========== SCROLL SUAVE ==========
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if(targetId === "#" || targetId === "") return;
-            const target = document.querySelector(targetId);
-            if(target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-
-    // ========== DARK MODE TOGGLE ==========
-    const darkToggle = document.getElementById('darkModeToggle');
-    if(darkToggle) {
-        darkToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const icon = darkToggle.querySelector('i');
-            if(document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-    }
-
-    // ========== CONTADORES ANIMADOS ==========
-    const counters = document.querySelectorAll('[data-count]');
-    const animateCounter = (el) => {
-        const target = parseInt(el.getAttribute('data-count'));
-        let current = 0;
-        const increment = target / 50;
-        const updateCounter = () => {
-            current += increment;
-            if(current < target) {
-                el.innerText = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                el.innerText = target;
-            }
+class BrotherCoreTV {
+    constructor() {
+        this.state = {
+            isSubscribed: false,
+            isLiked: false,
+            isDisliked: false,
+            likeCount: 15234,
+            subscriberCount: 0,
+            comments: [],
+            videoProgress: 0,
+            currentVideoId: 1
         };
-        updateCounter();
-    };
-    const observerCounters = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                animateCounter(entry.target);
-                observerCounters.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    counters.forEach(counter => observerCounters.observe(counter));
-
-    // ========== FAQ ACCORDION ==========
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            item.classList.toggle('active');
-            const icon = question.querySelector('i');
-            if(item.classList.contains('active')) {
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-    });
-
-    // ========== CARROSSÉIS (SWIPER) ==========
-    new Swiper('.blog-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-    });
-    new Swiper('.depo-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        autoplay: { delay: 4000 }
-    });
-
-    // ========== ANIMAÇÕES GSAP ==========
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from('.hero h1', { opacity: 0, y: 50, duration: 1 });
-    gsap.from('.hero p', { opacity: 0, y: 30, duration: 1, delay: 0.3 });
-    gsap.from('.hero-buttons', { opacity: 0, scale: 0.9, duration: 0.8, delay: 0.6 });
-
-    // ========== AOS INIT ==========
-    AOS.init({ duration: 800, once: true, offset: 100 });
-
-    // ========== DASHBOARD CHART.JS ==========
-    const ctx = document.getElementById('agroChart')?.getContext('2d');
-    if(ctx) {
-        new Chart(ctx, {
-            type: 'line',
-            data: { labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'], datasets: [{ label: 'Produtividade Soja (sc/ha)', data: [55, 60, 62, 68, 70, 72], borderColor: '#15803d', backgroundColor: 'rgba(34,197,94,0.1)', tension: 0.3, fill: true }] },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } } }
-        });
+        
+        this.init();
     }
-
-    // ========== FORMULÁRIO DE CONTATO ==========
-    const contactForm = document.getElementById('contactForm');
-    const feedback = document.getElementById('formFeedback');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            feedback.innerHTML = '<span style="color:green;">✅ Mensagem enviada! Em breve retornamos.</span>';
-            contactForm.reset();
-            setTimeout(() => feedback.innerHTML = '', 3000);
-        });
+    
+    init() {
+        this.loadComments();
+        this.setupEventListeners();
+        this.loadRecommendedVideos();
+        this.updateUI();
+        this.initVideoPlayer();
+        console.log('🛹 z1kas');
     }
-
-    // ========== NEWSLETTER ==========
-    const newsletterForm = document.getElementById('newsletterForm');
-    const newsMsg = document.getElementById('newsMsg');
-    if(newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('newsEmail').value;
-            if(email) {
-                newsMsg.innerHTML = '<span style="color:white;">📧 Inscrição confirmada! Obrigado.</span>';
-                newsletterForm.reset();
-                setTimeout(() => newsMsg.innerHTML = '', 3000);
-            }
-        });
-    }
-
-    // ========== LAZY LOADING (imagens nativas + suporte) ==========
-    if('loading' in HTMLImageElement.prototype) {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => img.setAttribute('loading', 'lazy'));
-    } else {
-        // fallback simples
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-        document.body.appendChild(script);
-    }
-
-    // ========== EFEITOS DE SCROLL (header shrink) ==========
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header');
-        if(window.scrollY > 50) {
-            header.style.padding = '0rem 0';
-            header.style.backdropFilter = 'blur(16px)';
-        } else {
-            header.style.padding = '';
-            header.style.backdropFilter = 'blur(12px)';
+    
+    setupEventListeners() {
+        // Subscribe button
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        if (subscribeBtn) {
+            subscribeBtn.addEventListener('click', () => this.toggleSubscribe());
         }
-    });
-});
+        
+        // Like/Dislike buttons
+        const likeBtn = document.getElementById('likeBtn');
+        const dislikeBtn = document.getElementById('dislikeBtn');
+        
+        if (likeBtn) {
+            likeBtn.addEventListener('click', () => this.toggleLike());
+        }
+        
+        if (dislikeBtn) {
+            dislikeBtn.addEventListener('click', () => this.toggleDislike());
+        }
+        
+        // Comment system
+        const commentInput = document.getElementById('commentInput');
+        const submitComment = document.getElementById('submitComment');
+        const cancelComment = document.getElementById('cancelComment');
+        
+        if (commentInput) {
+            commentInput.addEventListener('focus', () => this.showCommentActions());
+            commentInput.addEventListener('input', () => this.updateCommentButton());
+            commentInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    this.addComment();
+                }
+            });
+        }
+        
+        if (submitComment) {
+            submitComment.addEventListener('click', () => this.addComment());
+        }
+        
+        if (cancelComment) {
+            cancelComment.addEventListener('click', () => this.hideCommentActions());
+        }
+        
+        // Video player events
+        const video = document.getElementById('mainVideo');
+        if (video) {
+            video.addEventListener('timeupdate', () => this.updateProgress());
+            video.addEventListener('play', () => this.onVideoPlay());
+            video.addEventListener('pause', () => this.onVideoPause());
+        }
+        
+        // Progress bar click
+        const progressBar = document.getElementById('progressBar');
+        if (progressBar) {
+            progressBar.addEventListener('click', (e) => this.seekVideo(e));
+        }
+        
+        // Load more comments
+        const loadMoreBtn = document.getElementById('loadMoreComments');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => this.loadMoreComments());
+        }
+    }
+    
+    // ========== SUBSCRIBE SYSTEM ==========
+    toggleSubscribe() {
+        this.state.isSubscribed = !this.state.isSubscribed;
+        
+        if (this.state.isSubscribed) {
+            this.state.subscriberCount++;
+            this.showNotification('Inscrito! Bem-vindo à família BrotherCore! 🛹');
+        } else {
+            this.state.subscriberCount--;
+            this.showNotification('Inscrição cancelada 😢');
+        }
+        
+        this.updateUI();
+        this.saveState();
+    }
+    
+    // ========== LIKE/DISLIKE SYSTEM ==========
+    toggleLike() {
+        const likeBtn = document.getElementById('likeBtn');
+        
+        if (this.state.isLiked) {
+            this.state.isLiked = false;
+            this.state.likeCount--;
+            likeBtn?.classList.remove('liked');
+        } else {
+            this.state.isLiked = true;
+            this.state.likeCount++;
+            likeBtn?.classList.add('liked');
+            
+            // Remove dislike if active
+            if (this.state.isDisliked) {
+                this.state.isDisliked = false;
+                document.getElementById('dislikeBtn')?.classList.remove('disliked');
+            }
+        }
+        
+        this.updateUI();
+        this.saveState();
+    }
+    
+    toggleDislike() {
+        const dislikeBtn = document.getElementById('dislikeBtn');
+        
+        if (this.state.isDisliked) {
+            this.state.isDisliked = false;
+            dislikeBtn?.classList.remove('disliked');
+        } else {
+            this.state.isDisliked = true;
+            dislikeBtn?.classList.add('disliked');
+            
+            // Remove like if active
+            if (this.state.isLiked) {
+                this.state.isLiked = false;
+                this.state.likeCount--;
+                document.getElementById('likeBtn')?.classList.remove('liked');
+            }
+        }
+        
+        this.updateUI();
+        this.saveState();
+    }
+    
+    // ========== COMMENT SYSTEM ==========
+    showCommentActions() {
+        const actions = document.getElementById('commentActions');
+        if (actions) actions.style.display = 'flex';
+    }
+    
+    hideCommentActions() {
+        const actions = document.getElementById('commentActions');
+        const input = document.getElementById('commentInput');
+        if (actions) actions.style.display = 'none';
+        if (input) input.value = '';
+        this.updateCommentButton();
+    }
+    
+    updateCommentButton() {
+        const input = document.getElementById('commentInput');
+        const submitBtn = document.getElementById('submitComment');
+        
+        if (submitBtn) {
+            submitBtn.disabled = !input?.value.trim();
+        }
+    }
+    
+    addComment() {
+        const input = document.getElementById('commentInput');
+        const commentText = input?.value.trim();
+        
+        if (!commentText) return;
+        
+        const newComment = {
+            id: Date.now(),
+            author: 'Você',
+            avatar: 'V',
+            text: commentText,
+            timestamp: new Date().toISOString(),
+            likes: 0,
+            replies: [],
+            timeAgo: 'Agora mesmo'
+        };
+        
+        this.state.comments.unshift(newComment);
+        this.renderComments();
+        this.hideCommentActions();
+        this.saveComments();
+        this.updateCommentCount();
+        
+        // Animate new comment
+        setTimeout(() => {
+            const firstComment = document.querySelector('.comment-item');
+            if (firstComment) {
+                firstComment.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }
+    
+    renderComments() {
+        const commentsList = document.getElementById('commentsList');
+        if (!commentsList) return;
+        
+        commentsList.innerHTML = this.state.comments.map(comment => `
+            <div class="comment-item">
+                <div class="user-avatar comment-avatar" style="background: linear-gradient(135deg, #ff00c8, #39ff14);">
+                    ${comment.avatar}
+                </div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">${comment.author}</span>
+                        <span class="comment-time">${comment.timeAgo}</span>
+                    </div>
+                    <div class="comment-text">${this.escapeHtml(comment.text)}</div>
+                    <div class="comment-actions">
+                        <button class="comment-action-btn" onclick="window.brotherCore.likeComment(${comment.id})">
+                            👍
+                        </button>
+                        <span class="comment-likes">${comment.likes > 0 ? comment.likes : ''}</span>
+                        <button class="comment-action-btn" onclick="window.brotherCore.dislikeComment(${comment.id})">
+                            👎
+                        </button>
+                        <button class="reply-btn">Responder</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    likeComment(commentId) {
+        const comment = this.state.comments.find(c => c.id === commentId);
+        if (comment) {
+            comment.likes++;
+            this.renderComments();
+            this.saveComments();
+        }
+    }
+    
+    dislikeComment(commentId) {
+        const comment = this.state.comments.find(c => c.id === commentId);
+        if (comment) {
+            comment.likes = Math.max(0, comment.likes - 1);
+            this.renderComments();
+            this.saveComments();
+        }
+    }
+    
+    updateCommentCount() {
+        const totalComments = document.getElementById('totalComments');
+        if (totalComments) {
+            const count = this.state.comments.length;
+            totalComments.textContent = this.formatNumber(count);
+        }
+    }
+    
+    loadMoreComments() {
+        // Simulate loading more comments
+        const moreComments = [
+            {
+                id: Date.now() + 1,
+                author: 'skater_pro99',
+                avatar: '🏄',
+                text: 'Mano, esse kickflip foi insano! 🔥',
+                timestamp: new Date().toISOString(),
+                likes: 234,
+                replies: [],
+                timeAgo: 'Há 2 horas'
+            },
+            {
+                id: Date.now() + 2,
+                author: 'vert_warrior',
+                avatar: '🛹',
+                text: 'Alguém sabe qual pista é essa?',
+                timestamp: new Date().toISOString(),
+                likes: 56,
+                replies: [],
+                timeAgo: 'Há 3 horas'
+            },
+            {
+                id: Date.now() + 3,
+                author: 'flip_master',
+                avatar: '⭐',
+                text: 'Treino todo dia pra chegar nesse nível!',
+                timestamp: new Date().toISOString(),
+                likes: 89,
+                replies: [],
+                timeAgo: 'Há 5 horas'
+            }
+        ];
+        
